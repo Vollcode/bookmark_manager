@@ -55,7 +55,9 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect '/links'
     else
-      flash.next[:users] = 'Are you trying to cheat me m8?'
+      flash.next[:password] = 'Are you trying to cheat me m8?' unless params[:password] == params[:confirm_password]
+      flash.next[:email] = 'Sorry m8 that email is already taken' if User.first(email: params[:email])
+      flash.next[:username] = 'Sorry m8 that username is already taken' if User.first(username: params[:username])
       redirect 'users/new'
     end
   end

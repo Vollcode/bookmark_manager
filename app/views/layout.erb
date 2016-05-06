@@ -5,8 +5,10 @@
   </head>
 
   <body>
-    <% if flash[:users] %>
-      <%= flash[:users] %>
+    <% if flash[:password] || flash[:email] || flash[:username] %>
+      <%= flash[:password] %>
+      <%= flash[:email] %>
+      <%= flash[:username] %>
     <% end %>
     <% if current_user %>
       Welcome <%= current_user.username %>!
